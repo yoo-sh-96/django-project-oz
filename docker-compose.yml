@@ -1,0 +1,12 @@
+version: "3.11" # Docker ComposeAPI
+services:
+  app: # Django
+    build:
+      context: . # 파일위치(같은 로컬위치이기에 . )
+      args:
+        - DEV=true # 개발환경은 트루
+    ports:
+      - "8000:8000" # 컨테이너와 이미지를 연결시키기 위한 포트설정
+    volumes:
+      - ./app:/app # 저장공간
+    command: sh -c "python manage.py runserver 0.0.0.0:8000" # 쉘스크립트 실행 명령어
