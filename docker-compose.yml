@@ -9,4 +9,23 @@ services:
       - "8000:8000" # 컨테이너와 이미지를 연결시키기 위한 포트설정
     volumes:
       - ./app:/app # 저장공간
-    command: sh -c "python manage.py runserver 0.0.0.0:8000" # 쉘스크립트 실행 명령어
+    command: > # 쉘스크립트 실행 명령어
+     sh -c "python manage.py wait_for_db &&
+            python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=youtube
+      - DB_USER=yooseunghyeop
+      - DB_PASSWORD=1q2w3e4r
+    depends_on:
+      - db
+
+  db: # PostgreSQL DataBase
+    image: postgres:16-alpine
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=youtube
+      - POSTGRES_USER=yooseunghyeop
+      - POSTGRES_PASSWORD=1q2w3e4r
