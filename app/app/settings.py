@@ -124,5 +124,5 @@ AUTH_USER_MODEL = 'users.User'
 STATIC_URL = '/static/static/'
 MEDIA_URL = '/static/media/'
 
-MEDIA_ROOT = 'vol/web/media'
+MEDIA_ROOT = '/vol/web/media'
 STATIC_ROOT = '/vol/web/static'
