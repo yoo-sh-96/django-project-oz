@@ -1,7 +1,7 @@
 from django.db import models
 from common.models import CommonModel
 
-class Comments(CommonModel):
+class Comment(CommonModel):
     user = models.ForeignKey('users.User', on_delete=models.CASCADE)
     video = models.ForeignKey('videos.Video', on_delete=models.CASCADE)
     content = models.TextField() 

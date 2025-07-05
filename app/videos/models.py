@@ -9,7 +9,7 @@ class Video(CommonModel):
     link = models.URLField()
     category = models.CharField(max_length=20)
     views_count = models.PositiveIntegerField(default=0)
-    thumnail = models.URLField() # S3 bucket -> Save File -> URL -> Save URL
+    thumbnail = models.URLField() # S3 bucket -> Save File -> URL -> Save URL
     video_file = models.FileField(upload_to='storage/') # upload_to='저장경로'
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
